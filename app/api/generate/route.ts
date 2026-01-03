@@ -5,7 +5,7 @@ const client = new OpenAI({
   baseURL: 'https://api.studio.nebius.com/v1/',
   apiKey: process.env.NEBIUS_API_KEY,
 });
-export  const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
   try {
@@ -21,17 +21,17 @@ export async function POST(req: Request) {
       "model": "black-forest-labs/flux-schnell",
       "response_format": "url",
       "extra_body": {
-          "response_extension": "webp",
-          "width": 1024,
-          "height": 1024,
-          "num_inference_steps": 4,
-          "negative_prompt": "",
-          "seed": -1
+        "response_extension": "webp",
+        "width": 1024,
+        "height": 1024,
+        "num_inference_steps": 4,
+        "negative_prompt": "",
+        "seed": -1
       },
       "prompt": prompt,
-  });
+    } as any);
 
-    return NextResponse.json({ imageUrl: response.data[0].url});
+    return NextResponse.json({ imageUrl: response.data[0].url });
   } catch (error) {
     console.error('Error generating image:', error);
     return NextResponse.json(
